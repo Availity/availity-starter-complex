@@ -1,29 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PageHeader from '@availity/page-header';
-import { Container, Button } from 'reactstrap';
+import { withRouter } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import { AvForm } from 'availity-reactstrap-validation';
-import { Basic, Information, Provider } from './components';
+import { Basic, Information, Appeal } from './components';
 
-const AuthorizationRequest = ({ spaceId, navigate }) => (
-  <Container>
-    <PageHeader path="/" appName="Authorization Request" spaceId={spaceId} />
-    <AvForm onValidSubmit={() => navigate('response')}>
-      <Basic />
-      <Information />
-      <Provider />
-      <div className="form-controls">
-        <Button type="submit" color="primary" className="form-controls-right">
-          Submit
-        </Button>
-      </div>
-    </AvForm>
-  </Container>
+const AppealRequest = ({ history, location }) => (
+  <AvForm
+    onValidSubmit={() =>
+      history.push({
+        pathname: '/response',
+        search: location.search,
+      })
+    }
+  >
+    <Basic />
+    <Information />
+    <Appeal />
+    <div className="form-controls">
+      <Button type="submit" color="primary" className="form-controls-right">
+        Submit
+      </Button>
+    </div>
+  </AvForm>
 );
 
-AuthorizationRequest.propTypes = {
-  navigate: PropTypes.func,
-  spaceId: PropTypes.string
+AppealRequest.propTypes = {
+  location: PropTypes.object,
+  history: PropTypes.object,
 };
 
-export default AuthorizationRequest;
+export default withRouter(AppealRequest);

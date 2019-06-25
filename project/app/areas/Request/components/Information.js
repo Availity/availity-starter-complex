@@ -1,38 +1,41 @@
 import React from 'react';
-import { Card, CardTitle, Row, Col, Label } from 'reactstrap';
-import { AvField, AvGroup, AvInput } from 'availity-reactstrap-validation';
-import AvSelect, { AvSelectField } from '@availity/reactstrap-validation-select';
-import { AvDateField } from '@availity/reactstrap-validation-date';
+import { Card, CardTitle, InputGroup, FormGroup, InputGroupAddon, Label, InputGroupText } from 'reactstrap';
+import { AvField, AvInput } from 'availity-reactstrap-validation';
+import { AvDateRangeField } from '@availity/reactstrap-validation-date';
 import { requiredValidation } from '../../../shared';
 
 export default () => (
   <Card body className="mb-3">
-    <CardTitle className="card-title-secondary">Request Information</CardTitle>
+    <CardTitle className="card-title-secondary">Claim Information</CardTitle>
     <AvField name="memberId" label="Member ID" type="text" validate={requiredValidation} />
-    <AvSelectField
-      name="relationship"
-      label="Relationship to Subscriber"
-      options={[{ label: 'Option 1', value: 1 }, { label: 'Option 2', value: 2 }, { label: 'Option 3', value: 3 }]}
+    <AvField name="claimId" label="Claim ID Number" type="text" validate={requiredValidation} />
+    <AvDateRangeField
+      name="fromToDate"
+      label="From to Date"
       validate={requiredValidation}
+      start={{ name: 'date.start', required: true }}
+      end={{ name: 'date.end', required: false }}
+      ranges={[]}
     />
-    <AvDateField name="dob" label="Date of Birth" validate={requiredValidation} />
-    <AvGroup>
-      <Label>Service Quantity/Type</Label>
-      <Row>
-        <Col xs={4}>
-          <AvInput type="text" name="serviceQualityType" />
-        </Col>
-        <Col xs={8}>
-          <AvSelect
-            name="rts"
-            options={[
-              { label: 'Option 1', value: 1 },
-              { label: 'Option 2', value: 2 },
-              { label: 'Option 3', value: 3 },
-            ]}
-          />
-        </Col>
-      </Row>
-    </AvGroup>
+    <div className="d-flex">
+      <FormGroup className="flex-fill mr-3">
+        <Label for="originalBilled">Original Claim Amount Billed</Label>
+        <InputGroup>
+          <InputGroupAddon addonType="append">
+            <InputGroupText>$</InputGroupText>
+          </InputGroupAddon>
+          <AvInput name="originalBilled" id="originalBilled" type="text" />
+        </InputGroup>
+      </FormGroup>
+      <FormGroup className="flex-fill ml-3">
+        <Label for="originalPaid">Original Claim Amount Paid</Label>
+        <InputGroup>
+          <InputGroupAddon addonType="append">
+            <InputGroupText>$</InputGroupText>
+          </InputGroupAddon>
+          <AvInput name="originalPaid" id="originalPaid" type="text" />
+        </InputGroup>
+      </FormGroup>
+    </div>
   </Card>
 );

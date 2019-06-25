@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { LocationProvider } from '@reach/router';
+import { BrowserRouter as Router } from 'react-router-dom';
 import 'availity-uikit/scss/_bootstrap.scss';
-import hashHistory from './hashHistory';
+import './index.scss';
 import App from './App';
 
 render(
-  <LocationProvider history={hashHistory}>
-    <App  />
-  </LocationProvider>,
+  <Router>
+    <App />
+  </Router>,
   document.querySelector('#root')
 );

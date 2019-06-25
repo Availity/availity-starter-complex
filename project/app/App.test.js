@@ -1,17 +1,18 @@
 import React from 'react';
 import { render, cleanup, waitForElement } from '@testing-library/react';
-import { LocationProvider } from '@reach/router';
+import { Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history'
 import axiosMock from 'axios';
 import slotmachineResponse from '../data/slotmachine.json';
 import App from './App';
-import hashHistory from './hashHistory';
 
 jest.mock('axios');
 
+const customHistory = createBrowserHistory();
+customHistory.push('?spaceId=48C607A70B5A46A3864A34E2BDDDEA04');
+
+
 const renderApp = async () => {
-
-  hashHistory.navigate('/?spaceId=48C607A70B5A46A3864A34E2BDDDEA04');
-
   axiosMock.mockResolvedValue({
     config: { polling: false },
     data: slotmachineResponse,
@@ -20,9 +21,9 @@ const renderApp = async () => {
   });
 
   const { getByTestId, ...rest } = render(
-    <LocationProvider history={hashHistory}>
+    <Router history={customHistory}>
       <App />
-    </LocationProvider>
+    </Router>
   );
 
   await waitForElement(() => getByTestId('app-container'));
@@ -32,12 +33,12 @@ const renderApp = async () => {
 
 afterEach(() => {
   cleanup();
-})
+});
 
 describe('Authorizations', () => {
   test('renders', async () => {
     const { getByText } = await renderApp();
 
-    await waitForElement(() => getByText('My Health Plan'))
+    await waitForElement(() => getByText('My Health Plan'));
   });
 });

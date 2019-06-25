@@ -15,9 +15,9 @@ export default () => (
       <ResponseField label="Member ID" value="1234343" sm="3" />
     </Row>
     <Row>
-      <ResponseField label="Status" value="Modified" sm="3" />
+      <ResponseField label="Status" value="Created" sm="3" />
       <ResponseField label="Diagnosis Version" value="ICD-9" sm="3" />
-      <ResponseField label="Request Type" value="Inpatient Authorization" sm="3" />
+      <ResponseField label="Request Type" value="Appeal Form" sm="3" />
       <ResponseField label="Payer" value="Aetna" sm="3" />
     </Row>
   </Card>

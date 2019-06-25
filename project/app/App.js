@@ -1,29 +1,30 @@
-import React, { useMemo} from 'react';
-import { Router } from '@reach/router';
+import React, { useMemo } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import Spaces from '@availity/spaces';
+import PageHeader from '@availity/page-header';
 import qs from 'query-string';
-import AuthorizationRequest from './areas/Request';
-import AuthorizationResponse from './areas/Response';
+import AppealRequest from './areas/Request';
+import AppealResponse from './areas/Response';
+import { Footer } from './shared';
 
-const getQueryString = pathname => pathname.substring(pathname.lastIndexOf('?'), pathname.length);
+const App = ({ location }) => {
+  const queryParams = qs.parse(location.search);
 
-const App = () => {
-  const queryParams = qs.parse(getQueryString(window.location.href));
-
-  const spaceId = useMemo(() => queryParams.spaceId,[queryParams]);
+  const spaceId = useMemo(() => queryParams.spaceId, [queryParams]);
 
   return (
     <Spaces spaceIds={[spaceId]} clientId="test">
       <Container data-testid="app-container">
-        <Router style={{ height: '100%' }}>
-          <AuthorizationRequest spaceId={spaceId} path="/" />
-          <AuthorizationResponse spaceId={spaceId} path="/response" />
-        </Router>
+        <PageHeader spaceId={spaceId} appName="Appeal Request Form" />
+        <Switch>
+          <Route exact component={AppealRequest} path="/" />
+          <Route exact component={AppealResponse} path="/response" />
+        </Switch>
+        <Footer />
       </Container>
     </Spaces>
   );
 };
-export { AuthorizationRequest, AuthorizationResponse };
 
-export default App;
+export default withRouter(App);
