@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { Link } from '@reach/router';
 import { Button, Alert } from 'reactstrap';
 import { Transaction, Claim, Provider, Contact, Appeal } from './components';
 
-const Response = ({ history }) => (
+const Response = ({ spaceId }) => (
   <>
     <Alert color="success" className="d-flex align-items-center justify-content-between">
       Your Appeal has been submitted.{' '}
@@ -18,7 +18,7 @@ const Response = ({ history }) => (
     <Provider />
     <Contact />
     <div className="d-flex justify-content-end">
-      <Button color="primary" onClick={() => history.goBack()}>
+      <Button tag={Link} color="primary" to={`/?spaceId=${spaceId}`}>
         New Appeal
       </Button>
     </div>
@@ -26,7 +26,7 @@ const Response = ({ history }) => (
 );
 
 Response.propTypes = {
-  history: PropTypes.object,
+  spaceId: PropTypes.string
 };
 
-export default withRouter(Response);
+export default Response;

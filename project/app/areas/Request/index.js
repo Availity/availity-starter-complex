@@ -5,15 +5,8 @@ import { Button } from 'reactstrap';
 import { AvForm } from 'availity-reactstrap-validation';
 import { Basic, Information, Appeal } from './components';
 
-const AppealRequest = ({ history, location }) => (
-  <AvForm
-    onValidSubmit={() =>
-      history.push({
-        pathname: '/response',
-        search: location.search,
-      })
-    }
-  >
+const AppealRequest = ({ navigate, spaceId }) => (
+  <AvForm onValidSubmit={() => navigate(`response?spaceId=${spaceId}`)}>
     <Basic />
     <Information />
     <Appeal />
@@ -26,8 +19,8 @@ const AppealRequest = ({ history, location }) => (
 );
 
 AppealRequest.propTypes = {
-  location: PropTypes.object,
-  history: PropTypes.object,
+  spaceId: PropTypes.string,
+  navigate: PropTypes.func,
 };
 
-export default withRouter(AppealRequest);
+export default AppealRequest;

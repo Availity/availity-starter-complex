@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Router, navigate } from '@reach/router';
 import { Container } from 'reactstrap';
 import Spaces from '@availity/spaces';
 import PageHeader from '@availity/page-header';
@@ -8,8 +8,10 @@ import AppealRequest from './areas/Request';
 import AppealResponse from './areas/Response';
 import { Footer } from './shared';
 
-const App = ({ location }) => {
-  const queryParams = qs.parse(location.search);
+const getQueryString = pathname => pathname.substring(pathname.lastIndexOf('?'), pathname.length);
+
+export default () => {
+  const queryParams = qs.parse(getQueryString(window.location.href));
 
   const spaceId = useMemo(() => queryParams.spaceId, [queryParams]);
 
@@ -17,14 +19,12 @@ const App = ({ location }) => {
     <Spaces spaceIds={[spaceId]} clientId="test">
       <Container data-testid="app-container">
         <PageHeader spaceId={spaceId} appName="Appeal Request Form" />
-        <Switch>
-          <Route exact component={AppealRequest} path="/" />
-          <Route exact component={AppealResponse} path="/response" />
-        </Switch>
+        <Router>
+          <AppealRequest path="/" spaceId={spaceId} />
+          <AppealResponse path="response" spaceId={spaceId} />
+        </Router>
         <Footer />
       </Container>
     </Spaces>
   );
 };
-
-export default withRouter(App);
