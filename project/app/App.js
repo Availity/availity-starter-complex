@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Router, navigate } from '@reach/router';
+import { Router } from '@reach/router';
 import { Container } from 'reactstrap';
 import Spaces from '@availity/spaces';
 import PageHeader from '@availity/page-header';

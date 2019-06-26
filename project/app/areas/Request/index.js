@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { AvForm } from 'availity-reactstrap-validation';
 import { Basic, Information, Appeal } from './components';
