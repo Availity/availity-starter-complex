@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { AvForm } from 'availity-reactstrap-validation';
 import { Basic, Information, Appeal } from './components';
 
-const AppealRequest = ({ navigate, spaceId }) => (
-  <AvForm onValidSubmit={() => navigate(`response?spaceId=${spaceId}`)}>
+const AppealRequest = ({ history, spaceId }) => (
+  <AvForm onValidSubmit={() => history.push(`response`)}>
     <Basic />
     <Information />
     <Appeal />
@@ -19,7 +20,7 @@ const AppealRequest = ({ navigate, spaceId }) => (
 
 AppealRequest.propTypes = {
   spaceId: PropTypes.string,
-  navigate: PropTypes.func,
+  history: PropTypes.object,
 };
 
-export default AppealRequest;
+export default withRouter(AppealRequest);

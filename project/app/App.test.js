@@ -2,9 +2,9 @@ import React from 'react';
 import { render, cleanup, waitForElement } from '@testing-library/react';
 import { createBrowserHistory } from 'history';
 import axiosMock from 'axios';
+import { Router } from 'react-router-dom';
 import slotmachineResponse from '../data/slotmachine.json';
 import App from './App';
-import { LocationProvider } from '@reach/router';
 
 jest.mock('axios');
 
@@ -20,9 +20,9 @@ const renderApp = async () => {
   });
 
   const { getByTestId, ...rest } = render(
-    <LocationProvider history={customHistory}>
+    <Router history={customHistory}>
       <App />
-    </LocationProvider>
+    </Router>
   );
 
   await waitForElement(() => getByTestId('app-container'));

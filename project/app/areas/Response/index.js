@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 import { Button, Alert } from 'reactstrap';
 import { Transaction, Claim, Provider, Contact, Appeal } from './components';
 
@@ -18,7 +18,7 @@ const Response = ({ spaceId }) => (
     <Provider />
     <Contact />
     <div className="d-flex justify-content-end">
-      <Button tag={Link} color="primary" to={`/?spaceId=${spaceId}`}>
+      <Button tag={Link} color="primary" to='/'>
         New Appeal
       </Button>
     </div>

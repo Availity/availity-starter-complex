@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Router } from '@reach/router';
+import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import Spaces from '@availity/spaces';
 import PageHeader from '@availity/page-header';
@@ -12,6 +12,7 @@ const getQueryString = pathname => pathname.substring(pathname.lastIndexOf('?'),
 
 export default () => {
   const queryParams = qs.parse(getQueryString(window.location.href));
+  
 
   const spaceId = useMemo(() => queryParams.spaceId, [queryParams]);
 
@@ -19,10 +20,10 @@ export default () => {
     <Spaces spaceIds={[spaceId]} clientId="test">
       <Container data-testid="app-container">
         <PageHeader spaceId={spaceId} appName="Appeal Request Form" />
-        <Router>
-          <AppealRequest path="/" spaceId={spaceId} />
-          <AppealResponse path="response" spaceId={spaceId} />
-        </Router>
+          <Switch>
+          <Route component={AppealRequest} exact path="/" spaceId={spaceId} />
+          <Route component={AppealResponse} path="/response" spaceId={spaceId} />
+          </Switch>
         <Footer />
       </Container>
     </Spaces>

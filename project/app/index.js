@@ -1,16 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createHistory, LocationProvider } from '@reach/router';
-import createHashSource from 'hash-source';
+import { HashRouter as Router } from 'react-router-dom';
 import 'availity-uikit';
 import App from './App';
-
-const source = createHashSource();
-const history = createHistory(source);
-
 render(
-  <LocationProvider history={history}>
+  <Router basename="/">
     <App />
-  </LocationProvider>,
+  </Router>,
   document.querySelector('#root')
 );
