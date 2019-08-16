@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardTitle } from 'reactstrap';
-import { AvOrganizationSelect, AvProviderSelect } from '@availity/reactstrap-validation-select/resources';
-import { requiredValidation } from '../../../shared';
+import { AvOrganizationSelect, AvProviderSelect } from '@availity/select/resources';
 
 export default () => {
   const [customerId, setCustomerId] = useState(null);
@@ -12,17 +11,9 @@ export default () => {
       <AvOrganizationSelect
         name="organization"
         label="Organization"
-        required
-        validate={requiredValidation}
         onChange={({ customerId }) => setCustomerId(customerId)}
       />
-      <AvProviderSelect
-        name="provider"
-        label="Provider"
-        customerId={customerId}
-        required
-        validate={requiredValidation}
-      />
+      <AvProviderSelect name="provider" label="Provider" customerId={customerId} />
     </Card>
   );
 };

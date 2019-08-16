@@ -1,4 +1,4 @@
-# Availity Starter Coomplex
+# Availity Starter Complex
 
 > Simple Template Project For React Web Apps on the Availity Portal
 

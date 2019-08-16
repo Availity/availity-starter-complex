@@ -6,7 +6,7 @@ import PageHeader from '@availity/page-header';
 import qs from 'query-string';
 import AppealRequest from './areas/Request';
 import AppealResponse from './areas/Response';
-import { Footer } from './shared';
+import Footer from './shared';
 
 const getQueryString = pathname => pathname.substring(pathname.lastIndexOf('?'), pathname.length);
 

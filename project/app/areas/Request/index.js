@@ -2,11 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Button } from 'reactstrap';
-import { AvForm } from 'availity-reactstrap-validation';
+import { Form } from '@availity/form';
+import '@availity/yup';
+import '@availity/yup/moment';
+import * as yup from 'yup';
 import { Basic, Information, Appeal } from './components';
 
-const AppealRequest = ({ history, spaceId }) => (
-  <AvForm onValidSubmit={() => history.push(`response`)}>
+const schema = yup.object().shape({
+  appealReason: yup.string().isRequired(true, 'This Field is Required.'),
+  organization: yup.string().isRequired(true, 'This Field is Required.'),
+  provider: yup.string().isRequired(true, 'This Field is Required.'),
+  memberId: yup.string().isRequired(true, 'This Field is Required.'),
+  claimId: yup.string().isRequired(true, 'This Field is Required.'),
+  fromToDate: yup.dateRange().isRequired(true, 'This Field is Required.'),
+  originalBilled: yup.string(),
+  originalPaid: yup.string(),
+});
+
+const AppealRequest = ({ history }) => (
+  <Form
+    validationSchema={schema}
+    initialValues={{
+      appealReason: '',
+      organization: '',
+      provider: '',
+      memberId: '',
+      claimId: '',
+      fromToDate: null,
+      originalBilled: '',
+      originalPaid: '',
+    }}
+    onSubmit={() => history.push(`response`)}
+  >
     <Basic />
     <Information />
     <Appeal />
@@ -15,11 +42,10 @@ const AppealRequest = ({ history, spaceId }) => (
         Submit
       </Button>
     </div>
-  </AvForm>
+  </Form>
 );
 
 AppealRequest.propTypes = {
-  spaceId: PropTypes.string,
   history: PropTypes.object,
 };
 
