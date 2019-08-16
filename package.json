@@ -42,8 +42,6 @@
     "@availity/link": "^1.2.1",
     "@availity/localstorage-core": "^2.5.0",
     "@availity/page-header": "^4.4.6",
-    "@availity/reactstrap-validation-date": "^2.0.0",
-    "@availity/reactstrap-validation-select": "^4.0.0",
     "@availity/select": "^0.3.2",
     "@availity/spaces": "^2.0.1",
     "@availity/yup": "^1.1.0",
