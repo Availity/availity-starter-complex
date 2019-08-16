@@ -1,22 +1,15 @@
 import React from 'react';
 import { Card, CardTitle, InputGroup, FormGroup, InputGroupAddon, Label, InputGroupText } from 'reactstrap';
-import { AvField, AvInput } from 'availity-reactstrap-validation';
-import { AvDateRangeField } from '@availity/reactstrap-validation-date';
-import { requiredValidation } from '../../../shared';
+import { Field, Input } from '@availity/form';
+import { DateRangeField } from '@availity/date';
+import '@availity/date/styles.scss';
 
 export default () => (
   <Card body className="mb-3">
     <CardTitle className="card-title-secondary">Claim Information</CardTitle>
-    <AvField name="memberId" label="Member ID" type="text" validate={requiredValidation} />
-    <AvField name="claimId" label="Claim ID Number" type="text" validate={requiredValidation} />
-    <AvDateRangeField
-      name="fromToDate"
-      label="From to Date"
-      validate={requiredValidation}
-      start={{ name: 'date.start', required: true }}
-      end={{ name: 'date.end', required: false }}
-      ranges={[]}
-    />
+    <Field name="memberId" label="Member ID" type="text" />
+    <Field name="claimId" label="Claim ID Number" type="text" />
+    <DateRangeField id="fromToDate" name="fromToDate" label="From to Date" />
     <div className="d-flex">
       <FormGroup className="flex-fill mr-3">
         <Label for="originalBilled">Original Claim Amount Billed</Label>
@@ -24,7 +17,7 @@ export default () => (
           <InputGroupAddon addonType="append">
             <InputGroupText>$</InputGroupText>
           </InputGroupAddon>
-          <AvInput name="originalBilled" id="originalBilled" type="text" />
+          <Input name="originalBilled" id="originalBilled" type="text" />
         </InputGroup>
       </FormGroup>
       <FormGroup className="flex-fill ml-3">
@@ -33,7 +26,7 @@ export default () => (
           <InputGroupAddon addonType="append">
             <InputGroupText>$</InputGroupText>
           </InputGroupAddon>
-          <AvInput name="originalPaid" id="originalPaid" type="text" />
+          <Input name="originalPaid" id="originalPaid" type="text" />
         </InputGroup>
       </FormGroup>
     </div>

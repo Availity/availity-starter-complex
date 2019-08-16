@@ -13,6 +13,7 @@ ResponseField.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.symbol, PropTypes.func]),
+  children: PropTypes.node,
 };
 ResponseField.defaultProps = {
   tag: Col,

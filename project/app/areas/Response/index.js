@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, Alert } from 'reactstrap';
 import { Transaction, Claim, Provider, Contact, Appeal } from './components';
 
-const Response = ({ spaceId }) => (
+const Response = () => (
   <>
     <Alert color="success" className="d-flex align-items-center justify-content-between">
       Your Appeal has been submitted.{' '}
@@ -18,15 +17,11 @@ const Response = ({ spaceId }) => (
     <Provider />
     <Contact />
     <div className="d-flex justify-content-end">
-      <Button tag={Link} color="primary" to='/'>
+      <Button tag={Link} color="primary" to="/">
         New Appeal
       </Button>
     </div>
   </>
 );
-
-Response.propTypes = {
-  spaceId: PropTypes.string
-};
 
 export default Response;
