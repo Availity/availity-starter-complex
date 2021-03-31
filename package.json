@@ -67,9 +67,7 @@
     "history": "^4.9.0",
     "jest-dom": "^3.0.0"
   },
-  "availityWorkflow": {
-    "plugin": "@availity/workflow-plugin-react"
-  },
+  "availityWorkflow": true,
   "lint-staged": {
     "*.js": [
       "prettier --write",
