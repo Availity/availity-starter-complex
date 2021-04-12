@@ -60,12 +60,15 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
-    "@availity/workflow": "^6.0.3",
-    "@availity/workflow-plugin-react": "^6.0.3",
+    "@availity/workflow": "^6.0.4",
     "@testing-library/react": "^8.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
     "cross-env": "^5.1.4",
+    "eslint-config-availity": "^7.0.251",
     "history": "^4.9.0",
-    "jest-dom": "^3.0.0"
+    "jest-dom": "^3.0.0",
+    "typescript": "^4.0.3"
   },
   "availityWorkflow": true,
   "lint-staged": {
